@@ -1,0 +1,18 @@
+body {
+  padding-top: 100px;
+}
+
+#navbar-gap {
+  margin-top: -4%;
+}
+
+.product-image {
+  /* width: 100%; */
+  width: 640px;
+  height: 480px;
+}
+
+#carousel img {
+  width: 200px;
+  height: 200px;
+}

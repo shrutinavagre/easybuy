@@ -1,0 +1,52 @@
+<% layout('layout') -%>
+
+<div class="row">
+  <div class="col-lg-4 col-md-offset-1">
+
+    <% if (message.length > 0) { %>
+    <div class="alert alert-success alert-dismissible">
+      <button type="button" class="close" data-dismmiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <%= message %>
+    </div>
+    <% } %>
+
+    <form method="post">
+
+      <h1> Add a new category </h1>
+      <div class="form-group">
+        <label="name">Name: </label>
+          <input type="text" class="form-control" name="name">
+      </div>
+
+      <button type="submit" class="btn btn-success form-control">Add Category</button>
+    </form>
+  </div>
+  <div class="col-lg-4 col-md-offset-1">
+    <form method="POST" action="/additem">
+      <h1> Add a new item </h1>
+        <div class="form-group">
+          <label for="name">Item Name</label>
+          <input type="text" class="form-control" id="name" name="name" placeholder="Enter item name..">
+          
+          <label for="price">Item Price</label>
+          <input type="text" class="form-control" id="price" name="price" placeholder="Enter item price..">
+          
+          <label for="category">Category</label>
+          <select class="form-control" id="category" name="category" 
+          style="height:10; line-height:30px; background:#f4f4f4;">
+            <% for(var i = 0; i < categories.length; i++){ %>
+            <option value="<%= categories[i]._id%>"><%= categories[i].name %></option>
+            <% } %>
+          </select>
+
+          <label for="image">Item Image</label>
+          <input type="text" class="form-control" id="image" name="image" placeholder="Enter Image URL..">
+
+        </div>
+      <button type="submit" class="btn btn-success form-control">Add item</button>
+    </form>
+
+  </div>
+</div>
