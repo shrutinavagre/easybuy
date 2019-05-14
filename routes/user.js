@@ -39,9 +39,10 @@ router.post("/signup", function(req, res, next) {
   async.waterfall([
     function(callback) {
       var user = new User();
-
+      var date = new Date();
       user.profile.name = req.body.name;
       user.email = req.body.email;
+      user.date = date;
       user.password = req.body.password;
       user.profile.picture = user.gravatar();
 

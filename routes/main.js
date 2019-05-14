@@ -146,8 +146,25 @@ router.get("/products/:id", function(req, res, next) {
 router.get("/product/:id", function(req, res, next) {
   Product.findById({ _id: req.params.id }, function(err, product) {
     if (err) return next(err);
+    let price = product.price;
+    let diffDays = 0;
+    if (req.user) {
+      const currentDate = new Date("5/11/2019");
+      const userDate = req.user.date;
+      console.log(currentDate);
+      console.log(userDate);
+
+      const diffTime = Math.abs(userDate.getTime() - currentDate.getTime());
+      diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) - 1;
+      if (diffDays > 90) {
+        price -= 2;
+      }
+      // console.log();
+    }
     res.render("main/product", {
-      product: product
+      product: product,
+      price: price,
+      diffDays: diffDays
     });
   });
 });

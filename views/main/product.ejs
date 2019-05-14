@@ -8,7 +8,12 @@
     <div class="col-md-4"></div>
     <div class="col-md-4">
       <h3><%= product.name %></h3>
-      <h1><%= product.price %></h1>
+      <% if(diffDays > 90 ) { %>
+        <h1 ><strike style="color:red"><%= product.price %></strike> <h5>Original Price</h5></h1>
+        <span> <h2><%= price %> <h5>Discounted price</h5> </h2></span>
+      <% } else { %>
+        <h1><%= price %></h1>
+      <% } %>
 
       <form method="POST">
         <div class="btn-group" role="group" aria-label="...">
@@ -20,10 +25,11 @@
         
         <div class="form-group">
           <input type="hidden" name="product_id" id="quantity" value="<%= product._id %>"></input>
-          <input type="hidden" name="priceHidden" id="priceHidden" value="<%= product.price %>"></input>
+          <input type="hidden" name="priceHidden" id="priceHidden" value="<%= price %>"></input>
           <input type="text" name="item" class="form-control" value="<%= product.name %>"></input>
-          <input type="text" name="priceValue" id="priceValue" class="form-control" value="<%= product.price %>"></input>
+          <input type="text" name="priceValue" id="priceValue" class="form-control" value="<%= price %>" readonly></input>
         </div>
+
 
         <% if(user) { %>
         <button type="submit" class="btn btn-primary btn-lg">Add to Cart</button>
